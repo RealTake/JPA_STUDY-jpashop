@@ -13,6 +13,10 @@ public class ItemRepository {
 
     private final EntityManager em;
 
+    /**
+     *
+     * @param item 해당 엔티티는 준영속 상태이므로, merge 호출 시 반환 되는 객체를 이용해야한다.(기존 item 변수는 영속 상태아님)
+     */
     public void save(Item item) {
         if (item.getId() == null) {
             em.persist(item);

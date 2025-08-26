@@ -16,8 +16,21 @@ public class ItemService {
     private final ItemRepository itemRepository;
 
     @Transactional
-    public void save(Item item) {
+    public void saveItem(Item item) {
         itemRepository.save(item);
+    }
+
+    /**
+     * Dirty checking 방식을 이용
+     * @param id
+     * @param price
+     * @param title
+     */
+    @Transactional
+    public void updateItem(Long id, int price, String title) {
+        final Item findItem = itemRepository.findOne(id);
+
+        findItem.changeInfo(price, title);
     }
 
     public List<Item> findItems() {

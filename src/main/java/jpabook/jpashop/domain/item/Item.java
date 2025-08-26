@@ -46,4 +46,12 @@ public abstract class Item {
         this.stockQuantity = restStock; // 재고 업데이트
     }
 
+    /**
+     * 아이템 정보 수정
+     */
+    public void changeInfo(int price, String name){
+        setPrice(price);
+        setName(name);
+    }
+
 }
