@@ -47,4 +47,15 @@ public class MemberService {
     public Member findOne(Long id) {
        return memberRepository.findOne(id);
     }
+
+    /**
+     * 유저 이름 데이터 수정
+     * @return cqs를 적용해 다른 리턴값은 없다.
+     */
+    @Transactional
+    public void update(Long id, String name) {
+        // Dirty Checking 을 이용하여 수정하는 것이 좋다.(merge 대신)
+        final Member member = memberRepository.findOne(id);
+        member.setName(name);
+    }
 }
