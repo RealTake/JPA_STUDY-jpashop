@@ -9,12 +9,46 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequestMapping("/api")
 @RestController
 @RequiredArgsConstructor
 public class MemberApiController {
 
     private final MemberService memberService;
+
+    /**
+     * 멤버 엔티티를 그대로 노출 시키는 API
+     * @return
+     */
+    @GetMapping("/v1/members")
+    public List<Member> membersV1() {
+        return memberService.findMembers();
+    }
+
+    @GetMapping("/v2/members")
+    public Result membersV2() {
+        final List<MemberDTO> findMembers = memberService.findMembers()
+                .stream()
+                .map(m -> new MemberDTO(m.getName()))
+                .toList();
+
+        return new Result(findMembers);
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class Result<T> {
+        private T data;
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class MemberDTO {
+        private String name;
+    }
 
     /**
      * 프레젠테이션 개층에서 엔티티 객체로 파라미터 바인딩.

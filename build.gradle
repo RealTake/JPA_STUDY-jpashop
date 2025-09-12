@@ -1,6 +1,15 @@
 plugins {
 	id 'java'
+	/*
+	플러그인을 단독으로 적용하면 프로젝트는 아무런 변화가 X. 대신 다른 플러그인이 적용되는 시점을 감지하고 그에 따라 반응한다.
+	예를들면, java 플러그인이 적용되면 실행 가능한 jar 빌드 작업이 자동으로 구성된다.
+	 */
 	id 'org.springframework.boot' version '3.5.4'
+
+	/*
+	 Spring Boot의 플러그인이 사용중인 Spring Boot 버전에서 Spring-boot-dependency bom을 자동으로 가져온다.
+	 즉, Maven과 같은 종속성 관리 기능을 제공하는 Gradle 플러그인.
+	* */
 	id 'io.spring.dependency-management' version '1.1.7'
 }
 
@@ -28,6 +37,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5-jakarta'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
