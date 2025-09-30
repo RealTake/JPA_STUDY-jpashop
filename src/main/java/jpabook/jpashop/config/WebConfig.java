@@ -10,8 +10,8 @@ public class WebConfig {
 
     @Bean
     public Hibernate5JakartaModule hibernate5JakartaModule() {
-        Hibernate5JakartaModule module = new Hibernate5JakartaModule();
-        module.configure(Hibernate5JakartaModule.Feature.FORCE_LAZY_LOADING, true);
+        Hibernate5JakartaModule module = new Hibernate5JakartaModule(); // 기본 설정: 초기화 되지 않은 엔티티의 프록시객체는 null로 반환
+//        module.configure(Hibernate5JakartaModule.Feature.FORCE_LAZY_LOADING, true); // API 응답시 지연로딩을 강제로 초기화
         return module;
     }
 }
