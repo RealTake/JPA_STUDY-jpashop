@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 
-//@Component
+@Component
 @RequiredArgsConstructor
 public class DbInit {
 
@@ -21,7 +21,7 @@ public class DbInit {
         initService.dbInit2();
     }
 
-//    @Component
+    @Component
     @Transactional
     @RequiredArgsConstructor
     static class InitService {
