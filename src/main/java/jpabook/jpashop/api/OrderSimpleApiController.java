@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/*
+    주문 엔티티 내 ToOne 연관관계만 조회하는 간단 API
+ */
 @RequestMapping("/api")
 @RestController
 @RequiredArgsConstructor
@@ -34,9 +37,7 @@ public class OrderSimpleApiController {
      */
     @GetMapping("/v1/simple-orders")
     public List<Order> ordersV1() {
-        final List<Order> findOrders = orderRepository.findAllByString(new OrderSearch());
-
-        return findOrders;
+        return orderRepository.findAllByString(new OrderSearch());
     }
 
     @GetMapping("/v2/simple-orders")
